@@ -1,0 +1,23 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Renew: {{ book_instance.book.title }}</h1>
+  <p>Borrower: {{ book_instance.borrower }}</p>
+  <p{% if book_instance.is_overdue %} class="text-danger"{% endif %}>Due date: {{ book_instance.due_back }}</p>
+   
+  <!-- Empty Action in a form tag means data posted back to current
+  URL of the page-->
+  <form action="" method="post">
+    <!-- If you use POST in templates to submit data add a csrf_token for security -->
+    {% csrf_token %}
+
+    <!-- Using this renders it as a label, textfield box, and help text
+    It is also possible to render it as a unordered list (as_ul)
+    or even as a paragraph (as_p). 
+    It is also possible to customize it completely referencing
+    each property (renewal_date, renewal_date.errors, renewal_date.id_for_lavel, etc.)
+    -->
+    {{ form.as_table }}
+    <input type="submit" value="Submit">
+  </form>
+{% endblock %}

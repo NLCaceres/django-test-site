@@ -1,0 +1,26 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+  <h1>{{ author.first_name }} {{ author.last_name }}</h1>
+
+  <p>{{author.date_of_birth}} - {% if author.date_of_death %}{{author.date_of_death}}{%endif%}</p>
+
+  <div style="margin-top:20px;margin-left:20px;"><strong>Books Written: </strong>
+  
+    {% if author.book_set.all|length > 0 %}
+
+    {% for book in author.book_set.all %}
+    <div>
+      <span><a href="{{book.get_absolute_url}}">{{book.title}} </a><strong>({{book.bookinstance_set.count}})</strong></span>
+      <p>{{book.summary}}</p>
+    </div>
+    {% endfor %}
+    
+    {% else %}
+    <h4>How strange... This author hasn't written anything... Can they really even be considered an author then?... Weird...</h4>
+
+    {% endif %}
+  
+  </div>
+{% endblock %}
