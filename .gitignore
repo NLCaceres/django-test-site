@@ -25,6 +25,11 @@
 *.log
 *.sql
 *.sqlite
+*.sqlite3
+
+# Text backup files #
+#####################
+*.bak
 
 # OS generated files #
 ######################
